@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Números enteros, fraccionarios y decimales</title>
+<style>
+:root{--bg:#f3fafc;--ink:#1d2b36;--azul:#1b8fb8;--azul-o:#0e5f80;--linea:#bfe3ee;--ok:#1f7a4d;--mal:#b3382c;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#10202a;--ink:#e6f1f6;--azul:#5cc3e6;--azul-o:#8fd8f0;--linea:#2c5163;--ok:#58c58e;--mal:#ff8b7d;--card:#17303d}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif}
+header,main{max-width:760px;margin:0 auto;padding:20px 18px}
+h1{font-size:1.7rem;line-height:1.25;color:var(--azul-o);margin:.2em 0}
+h2{color:var(--azul-o);font-size:1.3rem;margin-top:1.4em}
+.card{background:var(--card);border:2px solid var(--linea);border-radius:18px;padding:18px 20px;margin:16px 0}
+label{display:block;font-weight:bold;margin:10px 0 4px}
+input[type=text],textarea{width:100%;font:inherit;color:inherit;background:transparent;border:0;border-bottom:2px solid var(--linea);padding:6px 2px;resize:vertical}
+textarea{background-image:repeating-linear-gradient(transparent 0 31px,var(--linea) 31px 32px);line-height:32px;min-height:96px;border:0;padding:0 4px}
+input:focus,textarea:focus,button:focus-visible,.tab:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+button{font:inherit;background:var(--azul-o);color:#fff;border:0;border-radius:10px;padding:9px 18px;cursor:pointer;margin:8px 8px 0 0}
+button.sec{background:transparent;color:var(--azul-o);border:2px solid var(--azul-o)}
+nav{display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid var(--linea)}
+.tab{background:none;color:var(--ink);border-radius:10px 10px 0 0;margin:0;padding:9px 14px}
+.tab[aria-selected=true]{background:var(--azul-o);color:#fff}
+.hidden{display:none}
+.ej{border-left:5px solid var(--azul);padding:4px 14px;margin:12px 0;background:rgba(27,143,184,.08)}
+.sol{margin-top:10px;padding:10px 14px;border-radius:10px;color:#9b1c1c;background:rgba(200,50,40,.08);border:1px dashed #c0392b}
+@media (prefers-color-scheme:dark){.sol{color:#ffb3a8}}
+.fb{font-weight:bold;margin-top:8px}.ok{color:var(--ok)}.mal{color:var(--mal)}
+.op{display:block;padding:8px 12px;margin:6px 0;border:2px solid var(--linea);border-radius:10px;cursor:pointer;font-weight:normal}
+.op:has(input:checked){border-color:var(--azul)}
+.op.c{border-color:var(--ok);background:rgba(31,122,77,.12)}.op.x{border-color:var(--mal);background:rgba(179,56,44,.1)}
+.recta{display:flex;justify-content:space-between;border-top:3px solid var(--azul-o);margin:24px 6px 4px;font-size:.9rem}
+.recta span{position:relative;top:-2px}
+.refs{font-size:.92rem}.refs p{padding-left:2em;text-indent:-2em;margin:.5em 0}
+#res{text-align:center}#res .n{font-size:2.6rem;color:var(--azul-o);font-weight:bold}
+@media print{nav,button,#datos{display:none!important}.pan{display:block!important}}
+</style>
+</head>
+<body>
+<header>
+<h1>Números enteros, fraccionarios y decimales</h1>
+<p>Matemáticas · Actividad de inicio. Lee la teoría, revisa los ejemplos, resuelve la página de actividades y termina con la evaluación.</p>
+</header>
+<main>
+<section class="card" id="datos">
+<label for="ape">Apellidos</label><input type="text" id="ape" autocomplete="family-name">
+<label for="nom">Nombre(s)</label><input type="text" id="nom" autocomplete="given-name">
+<button id="go">Comenzar</button>
+<div class="fb mal" id="err" role="alert"></div>
+</section>
+
+<div id="app" class="hidden">
+<p><strong id="quien"></strong></p>
+<nav role="tablist">
+<button class="tab" role="tab" data-t="teo" aria-selected="true">Teoría</button>
+<button class="tab" role="tab" data-t="eje" aria-selected="false">Ejemplos</button>
+<button class="tab" role="tab" data-t="act" aria-selected="false">Actividad</button>
+<button class="tab" role="tab" data-t="eva" aria-selected="false">Evaluación</button>
+</nav>
+
+<section class="pan" id="teo">
+<h2>Los números enteros</h2>
+<p>Los números enteros son los naturales (1, 2, 3…), el cero y los negativos (−1, −2, −3…). Sirven para contar y también para expresar cantidades opuestas: ganar y perder, subir y bajar, arriba y debajo de cero (Baldor, 2005).</p>
+<p>Un número es <strong>positivo</strong> si está a la derecha del cero en la recta numérica y <strong>negativo</strong> si está a la izquierda. Entre más a la izquierda, menor es el número.</p>
+<div class="recta" aria-hidden="true"><span>−5</span><span>−4</span><span>−3</span><span>−2</span><span>−1</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+<h2>Suma de números negativos</h2>
+<p>Cuando los dos sumandos tienen el mismo signo, se suman los valores absolutos y se conserva el signo (Baldor, 2007). Por eso, al sumar dos negativos el resultado es un negativo todavía más a la izquierda en la recta, es decir, <strong>menor</strong> que cada sumando.</p>
+<h2>Los números fraccionarios</h2>
+<p>Una fracción a/b expresa que un entero se dividió en b partes iguales y se toman a de ellas. Se usa cuando un reparto no da un número entero exacto (Baldor, 2005). Repartir 1 pizza entre 4 personas da ¼ para cada una.</p>
+<h2>Los números decimales</h2>
+<p>Un decimal es otra forma de escribir una fracción cuyo denominador es 10, 100, 1000… Por ejemplo, 0.5 = 5/10 y 0.25 = 25/100. Son muy útiles cuando se necesita más precisión que la que dan los enteros, como en dinero, medidas y volúmenes (Baldor, 2005).</p>
+<div class="refs card"><strong>Referencias</strong>
+<p>Baldor, A. (2005). <em>Aritmética</em>. Publicaciones Cultural.</p>
+<p>Baldor, A. (2007). <em>Álgebra</em>. Publicaciones Cultural.</p></div>
+</section>
+
+<section class="pan hidden" id="eje">
+<h2>Ejemplos resueltos</h2>
+<div class="ej"><strong>1. Reparto.</strong> Una barra de chocolate se divide entre 5 amigos. Cada uno recibe 1 ÷ 5 = 1/5 = 0.2 de la barra. No es entero: es fraccionario (y también se puede escribir como decimal).</div>
+<div class="ej"><strong>2. Temperatura.</strong> Un congelador está a 18 grados bajo cero. Se representa con −18 °C, un número negativo.</div>
+<div class="ej"><strong>3. Suma de negativos.</strong> −4 + (−6): se suman 4 + 6 = 10 y se conserva el signo. Resultado: −10. Como −10 está a la izquierda de −4 y de −6, es menor que ambos.</div>
+<div class="ej"><strong>4. Decimales.</strong> Una tortilla cuesta $2.50 y compras 3: pagas 3 × 2.50 = $7.50. Con enteros no podrías expresar los centavos.</div>
+</section>
+
+<section class="pan hidden" id="act">
+<h2>Actividad 1. Contesta con tus conocimientos</h2>
+<p>Escribe tu respuesta y presiona «Comparar». Las respuestas pueden variar: se muestra una respuesta modelo para que revises la tuya.</p>
+<div id="qs"></div>
+</section>
+
+<section class="pan hidden" id="eva">
+<h2>Evaluación</h2>
+<div id="ev"></div>
+<button id="calif">Calificar</button>
+<div id="res" class="card hidden"></div>
+</section>
+</div>
+</main>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const ACT=[
+{p:"a) Si divides una pizza entre 4 personas, ¿cómo representas la parte que le toca a cada quien? ¿Crees que ese número es entero o fraccionario?",s:"A cada persona le tocaría ¼ de pizza, por lo que es un número fraccionario.",k:[["1/4","¼","cuarto","fraccion"]]},
+{p:"b) ¿Qué número podrías usar para representar una temperatura por debajo de cero? ¿Ese número es positivo o negativo?",s:"Podría ser, por ejemplo, −5, que es un número negativo.",k:[["-","−","menos","negativ"]]},
+{p:"c) ¿Cuál es el resultado de sumar dos números negativos, como −3 + (−2)? ¿Crees que el resultado es mayor o menor que los números que se sumaron?",s:"El resultado es −5, que es menor que ambos números.",k:[["-5","−5","menos 5","menos cinco"],["menor"]]},
+{p:"d) ¿Puedes pensar en una situación donde usar números decimales sea más útil o más usual que usar enteros?",s:"Al pagar en una tienda, para el conteo de dinero, al medir ingredientes para una receta, al cargar gasolina, entre otros.",k:[["tienda","dinero","pag","receta","gasolina","medi","precio","peso","litro","kilo"]]}];
+const EV=[
+{q:"¿Qué tipo de número representa la parte que le toca a cada uno al dividir 1 pizza entre 8?",o:["Un entero positivo","Un número fraccionario","Un número negativo","El cero"],c:1},
+{q:"Una ciudad registra 8 grados bajo cero. ¿Cómo se representa?",o:["8 °C","+8 °C","−8 °C","0.8 °C"],c:2},
+{q:"¿Cuál es el resultado de −4 + (−6)?",o:["−10","−2","2","10"],c:0},
+{q:"El resultado de sumar dos números negativos es siempre…",o:["Mayor que los sumandos","Igual a cero","Positivo","Menor que los sumandos"],c:3},
+{q:"¿En cuál situación es más común usar decimales que enteros?",o:["Contar alumnos en un salón","Contar los días de la semana","Pagar $7.50 por un producto","Numerar las páginas de un libro"],c:2},
+{q:"¿Cuál de estos números es el mayor?",o:["−10","−4","−7","−1"],c:3}];
+const ape=$("#ape"),nom=$("#nom");
+$("#go").onclick=()=>{
+ if(!ape.value.trim()||!nom.value.trim()){$("#err").textContent="Escribe tus apellidos y tu nombre para comenzar.";return}
+ $("#err").textContent="";$("#datos").classList.add("hidden");$("#app").classList.remove("hidden");
+ $("#quien").textContent=ape.value.trim().toUpperCase()+", "+nom.value.trim();
+};
+$$(".tab").forEach(b=>b.onclick=()=>{
+ $$(".tab").forEach(t=>t.setAttribute("aria-selected",t===b));
+ $$(".pan").forEach(p=>p.classList.toggle("hidden",p.id!==b.dataset.t));
+});
+const norm=t=>t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+$("#qs").innerHTML=ACT.map((a,i)=>`<div class="card"><label for="t${i}">${a.p}</label><textarea id="t${i}"></textarea><button data-i="${i}">Comparar</button><div class="fb" id="f${i}" aria-live="polite"></div><div class="sol hidden" id="s${i}"><strong>Respuesta modelo:</strong> ${a.s}</div></div>`).join("");
+$$("#qs button").forEach(b=>b.onclick=()=>{
+ const i=+b.dataset.i,a=ACT[i],t=norm($("#t"+i).value),f=$("#f"+i);
+ if(t.trim().length<3){f.className="fb mal";f.textContent="Escribe una respuesta antes de comparar.";return}
+ const ok=a.k.every(g=>g.some(w=>t.includes(norm(w))));
+ f.className="fb "+(ok?"ok":"mal");
+ f.textContent=ok?"Tu respuesta coincide con las ideas clave. Compárala con la modelo.":"Revisa tu respuesta con la modelo y la teoría; puede faltarte una idea clave.";
+ $("#s"+i).classList.remove("hidden");
+});
+$("#ev").innerHTML=EV.map((e,i)=>`<div class="card"><p><strong>${i+1}.</strong> ${e.q}</p>${e.o.map((o,j)=>`<label class="op"><input type="radio" name="e${i}" value="${j}"> ${o}</label>`).join("")}<div class="fb" id="v${i}"></div></div>`).join("");
+$("#calif").onclick=()=>{
+ let n=0;
+ EV.forEach((e,i)=>{
+  const r=document.querySelector(`input[name=e${i}]:checked`),ops=$$(`input[name=e${i}]`);
+  ops.forEach((x,j)=>{const l=x.parentElement;l.classList.remove("c","x");x.disabled=true;if(j===e.c)l.classList.add("c");else if(r&&+r.value===j)l.classList.add("x")});
+  const ok=r&&+r.value===e.c;if(ok)n++;
+  const v=$("#v"+i);v.className="fb "+(ok?"ok":"mal");v.textContent=ok?"Correcto.":"Incorrecto. La respuesta correcta es: "+e.o[e.c];
+ });
+ const p=Math.round(n/EV.length*100),r=$("#res");
+ r.classList.remove("hidden");
+ r.innerHTML=`<div>${$("#quien").textContent}</div><div class="n">${n} / ${EV.length}</div><p>${p>=80?"¡Muy bien! Dominas el tema.":p>=60?"Vas bien. Repasa los ejemplos y vuelve a intentarlo.":"Repasa la teoría y los ejemplos, y vuelve a intentarlo."}</p><button onclick="window.print()">Imprimir resultado</button><button class="sec" onclick="location.reload()">Reiniciar</button>`;
+ $("#calif").disabled=true;r.scrollIntoView({behavior:"smooth"});
+};
+</script>
+</body>
+</html>
